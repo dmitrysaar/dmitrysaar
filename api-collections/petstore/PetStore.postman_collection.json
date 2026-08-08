@@ -1,0 +1,4110 @@
+{
+  "info": {
+    "_postman_id": "92c54867-3d5c-43e4-be02-85c34352fc06",
+    "name": "PetStore",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54716467",
+    "_collection_link": "https://go.postman.co/collection/54716467-92c54867-3d5c-43e4-be02-85c34352fc06?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CRUD User",
+      "item": [
+        {
+          "name": "Позитивные проверки",
+          "item": [
+            {
+              "name": "Создание пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let id = Date.now()\r",
+                      "pm.collectionVariables.set(\"id\", id);\r",
+                      "\r",
+                      "let username = \"user_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"username\", username);\r",
+                      "\r",
+                      "let password = \"pass_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"password\", password);\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \"{{id}}\",\r\n  \"username\": \"{{username}}\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"{{password}}\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти зарегистрированного пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Войти в систему",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/login?username={{username}}&password={{password}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "login"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "{{username}}"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{password}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Выйти из системы",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{petstore1}}/user/logout",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Повторно войти в систему",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/login?username={{username}}&password={{password}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "login"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "{{username}}"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{password}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменить пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let updatedUsername = \"useruser_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"updatedUsername\", updatedUsername);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": {{id}},\r\n  \"username\": \"{{updatedUsername}}\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверить примененные изменения к пользователю",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{updatedUsername}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{updatedUsername}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить зарегистрированного пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{updatedUsername}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{updatedUsername}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверить, что пользователь удалён",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создать двух пользователей с помощью массива",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let id1 = Math.floor(Math.random() * 1000000) + 1;\r",
+                      "let id2 = Math.floor(Math.random() * 1000000) + 1;\r",
+                      "\r",
+                      "let username1 = \"user_\" + id1;\r",
+                      "let username2 = \"user_\" + id2;\r",
+                      "\r",
+                      "let password1 = \"pass_\" + id1;\r",
+                      "let password2 = \"pass_\" + id2;\r",
+                      "\r",
+                      "pm.collectionVariables.set(\"id1\", id1);\r",
+                      "pm.collectionVariables.set(\"id2\", id2);\r",
+                      "pm.collectionVariables.set(\"username1\", username1);\r",
+                      "pm.collectionVariables.set(\"username2\", username2);\r",
+                      "pm.collectionVariables.set(\"password1\", password1);\r",
+                      "pm.collectionVariables.set(\"password2\", password2);\r",
+                      "\r",
+                      "console.log(\"Создаём пользователей:\");\r",
+                      "console.log(\"1.\", username1);\r",
+                      "console.log(\"2.\", username2);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n    {\r\n        \"id\": {{id1}},\r\n        \"username\": \"{{username1}}\",\r\n        \"firstName\": \"Test1\",\r\n        \"lastName\": \"User1\",\r\n        \"email\": \"{{username1}}@test.com\",\r\n        \"password\": \"{{password1}}\",\r\n        \"phone\": \"1234567890\",\r\n        \"userStatus\": 0\r\n    },\r\n    {\r\n        \"id\": {{id2}},\r\n        \"username\": \"{{username2}}\",\r\n        \"firstName\": \"Test2\",\r\n        \"lastName\": \"User2\",\r\n        \"email\": \"{{username2}}@test.com\",\r\n        \"password\": \"{{password2}}\",\r\n        \"phone\": \"0987654321\",\r\n        \"userStatus\": 0\r\n    }\r\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithArray",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithArray"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти первого зарегистрированного пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username1}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username1}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить первого пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username1}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username1}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверить, что пользователь 1 удалён",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username1}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username1}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти второго зарегистрированного пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username2}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username2}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить второго пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username2}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username2}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверить, что пользователь 2 удалён",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username2}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username2}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создать двух пользователей с помощью списка",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let id3 = Math.floor(Math.random() * 1000000) + 1;\r",
+                      "let id4 = Math.floor(Math.random() * 1000000) + 1;\r",
+                      "\r",
+                      "let username3 = \"user_\" + id3;\r",
+                      "let username4 = \"user_\" + id4;\r",
+                      "\r",
+                      "let password3 = \"pass_\" + id3;\r",
+                      "let password4 = \"pass_\" + id4;\r",
+                      "\r",
+                      "pm.collectionVariables.set(\"id3\", id3);\r",
+                      "pm.collectionVariables.set(\"id4\", id4);\r",
+                      "pm.collectionVariables.set(\"username3\", username3);\r",
+                      "pm.collectionVariables.set(\"username4\", username4);\r",
+                      "pm.collectionVariables.set(\"password3\", password3);\r",
+                      "pm.collectionVariables.set(\"password4\", password4);\r",
+                      "\r",
+                      "console.log(\"Создаём пользователей 3 и 4:\");\r",
+                      "console.log(\"3.\", username3);\r",
+                      "console.log(\"4.\", username4);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n    {\r\n        \"id\": {{id3}},\r\n        \"username\": \"{{username3}}\",\r\n        \"firstName\": \"Test3\",\r\n        \"lastName\": \"User3\",\r\n        \"email\": \"{{username3}}@test.com\",\r\n        \"password\": \"{{password3}}\",\r\n        \"phone\": \"1234567890\",\r\n        \"userStatus\": 0\r\n    },\r\n    {\r\n        \"id\": {{id4}},\r\n        \"username\": \"{{username4}}\",\r\n        \"firstName\": \"Test4\",\r\n        \"lastName\": \"User4\",\r\n        \"email\": \"{{username4}}@test.com\",\r\n        \"password\": \"{{password4}}\",\r\n        \"phone\": \"0987654321\",\r\n        \"userStatus\": 0\r\n    }\r\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithList",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithList"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти первого зарегистрированного пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username3}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username3}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить первого пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username3}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username3}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверить, что пользователь 3 удалён",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username3}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username3}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти второго зарегистрированного пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username4}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username4}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить второго пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username4}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username4}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверить, что пользователь 4 удалён",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/{{username4}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username4}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Негативные проверки",
+          "item": [
+            {
+              "name": "Получение несуществующего пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"responce time is less than 300ms\"),\r",
+                      " function () {pm.expect(pm.response.responseTime).to.be.below(300);};\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/thisusernotfound10",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "thisusernotfound10"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание пользователя с пустым body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 415\" , function () {pm.response.to.have.status(415);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание пользователя через GET метод",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 405\" , function () {pm.response.to.have.status(405);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 0,\r\n  \"username\": \"string\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание пользователя без username в body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 400\" , function () {pm.response.to.have.status(400);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 76757567,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание пользователя без username и id в body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 400\" , function () {pm.response.to.have.status(400);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Логин в систему через метод Post",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 404\" , function () {pm.response.to.have.status(404);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/luser/login?username={{username}}&password={{password}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "luser",
+                    "login"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "{{username}}"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{password}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Выход из системы через метод Post",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/luser/logout",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "luser",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Отдельный тест на PUT - он просто создает нового юзера?",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let updatedUsername = \"useruser_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"updatedUsername\", updatedUsername);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 1,\r\n  \"username\": \"string\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/puttest",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "puttest"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Отправить PUT без body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 415\", function () {\r",
+                      "    pm.response.to.have.status(415);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let updatedUsername = \"useruser_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"updatedUsername\", updatedUsername);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/puttest",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "puttest"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение пользователя с ошибкой в JSON",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let updatedUsername = \"useruser_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"updatedUsername\", updatedUsername);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": @@@,\r\n  \"username\": \"_________\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0____\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/puttest",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "puttest"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение несуществующего пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let updatedUsername = \"useruser_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"updatedUsername\", updatedUsername);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 22222222221000000000000000000,\r\n  \"username\": \"string\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/puttest11111111111111111111111111111111",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "puttest11111111111111111111111111111111"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удаление несуществующего пользователя",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {pm.response.to.have.status(404);});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/puttest",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "puttest"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удаление с пустым username в endpoint",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {pm.response.to.have.status(404);});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание двух пользователей через массив с пустым body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 415\" , function () {pm.response.to.have.status(415);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithArray",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithArray"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание двух пользователей через массив, через GET метод",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 405\" , function () {pm.response.to.have.status(405);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n    {\r\n        \"id\": \"{{id1}}\",\r\n        \"username\": \"{{username1}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password1}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    },\r\n    {\r\n        \"id\": \"{{id2}}\",\r\n        \"username\": \"{{username2}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password2}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    }\r\n]"
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithArray",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithArray"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создать двух пользователей через массив, без username в body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {pm.response.to.have.status(400);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let id1 = Date.now();\r",
+                      "pm.collectionVariables.set(\"id1\", id1);\r",
+                      "let username1 = \"user1_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"username1\", username1);\r",
+                      "let password1 = \"pass1_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"password1\", password1);\r",
+                      "\r",
+                      "let id2 = Date.now();\r",
+                      "pm.collectionVariables.set(\"id2\", id2);\r",
+                      "let username2 = \"user2_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"username2\", username2);\r",
+                      "let password2 = \"pass2_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"password2\", password2);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n    {\r\n        \"id\": \"{{id1}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password1}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    },\r\n    {\r\n        \"id\": \"{{id2}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password2}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    }\r\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithArray",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithArray"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание двух пользователей через список с пустым body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 415\" , function () {pm.response.to.have.status(415);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithList",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithList"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание двух пользователей через список, через GET метод",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 405\" , function () {pm.response.to.have.status(405);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n    {\r\n        \"id\": \"{{id1}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password1}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    },\r\n    {\r\n        \"id\": \"{{id2}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password2}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    }\r\n]"
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithList",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithList"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создать двух пользователей через список, без username в body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {pm.response.to.have.status(400);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let id1 = Date.now();\r",
+                      "pm.collectionVariables.set(\"id1\", id1);\r",
+                      "let username1 = \"user1_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"username1\", username1);\r",
+                      "let password1 = \"pass1_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"password1\", password1);\r",
+                      "\r",
+                      "let id2 = Date.now();\r",
+                      "pm.collectionVariables.set(\"id2\", id2);\r",
+                      "let username2 = \"user2_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"username2\", username2);\r",
+                      "let password2 = \"pass2_\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"password2\", password2);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n    {\r\n        \"id\": \"{{id1}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password1}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    },\r\n    {\r\n        \"id\": \"{{id2}}\",\r\n        \"firstName\": \"string\",\r\n        \"lastName\": \"string\",\r\n        \"email\": \"string\",\r\n        \"password\": \"{{password2}}\",\r\n        \"phone\": \"string\",\r\n        \"userStatus\": 0\r\n    }\r\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/user/createWithArray",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "user",
+                    "createWithArray"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD Pet",
+      "item": [
+        {
+          "name": "Позитивные проверки",
+          "item": [
+            {
+              "name": "Создание питомца",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let pet_id = Date.now()\r",
+                      "pm.collectionVariables.set(\"pet_id\", pet_id);\r",
+                      "\r",
+                      "let category_id = Date.now()\r",
+                      "pm.collectionVariables.set(\"category_id\", category_id);\r",
+                      "\r",
+                      "let category_name = \"cat\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"category_name\", category_name);\r",
+                      "\r",
+                      "let pet_name = \"kate\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"pet_name\", pet_name);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": {{pet_id}},\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"name\": \"{{pet_name}}\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Поиск питомца по статусу Available",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/findByStatus?status=available",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "findByStatus"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "available"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Поиск питомца по статусу Pending",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/findByStatus?status=pending",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "findByStatus"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "pending"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Поиск питомца по статусу Sold",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/findByStatus?status=sold",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "findByStatus"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "sold"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Поиск питомца по ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Загрузка изображения в созданного питомца",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "91335e2f-8584-44d6-bb78-df760e385576",
+                      "src": "/C:/Users/senep/Desktop/1.jpg"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}/uploadImage",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}",
+                    "uploadImage"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение питомца",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let updated_pet_name = \"Evelyn\" + Date.now();\r",
+                      "pm.collectionVariables.set(\"updated_pet_name\", updated_pet_name);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": {{pet_id}},\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"{{updated_pet_name}}\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти измененного питомца",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение питомца через form urlencoded",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "name",
+                      "value": "Eve",
+                      "type": "text",
+                      "uuid": "d132d5c4-e857-4f00-92ff-ad3f01a75269"
+                    },
+                    {
+                      "key": "status",
+                      "value": "available",
+                      "type": "text",
+                      "uuid": "43c68b1a-d208-48ab-827f-db1f1cba5d3d"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Найти измененного питомца",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удаление питомца",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Проверка, что питомец удалён",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Негативные проверки",
+          "item": [
+            {
+              "name": "Получение несуществующего питомца",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"responce time is less than 300ms\"),\r",
+                      " function () {pm.expect(pm.response.responseTime).to.be.below(300);};"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/1111111111111111111111111119212",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "1111111111111111111111111119212"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Поиск питомца по несуществующему статусу",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"responce time is less than 300ms\"),\r",
+                      " function () {pm.expect(pm.response.responseTime).to.be.below(300);};"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/findByStatus?status=@@@",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "findByStatus"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "@@@"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание питомца с пустым body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 415\" , function () {pm.response.to.have.status(415);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание питомца через метод GET",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 405\" , function () {pm.response.to.have.status(405);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание питомца без ID в body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 400\" , function () {pm.response.to.have.status(400);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"category\": {\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Отправить PUT без body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 415\", function () {\r",
+                      "    pm.response.to.have.status(415);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение питомца с несуществующим ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 1111111111111111111111111111111111111111111111111111111121,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение питомца с ошибкой в JSON",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": @@@\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание питомца для неверного добавления изображения",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"status.code is 200\" , function () {pm.response.to.have.status(200);});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let negative_pet_id = Date.now()\r",
+                      "pm.collectionVariables.set(\"negative_pet_id\", negative_pet_id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": {{negative_pet_id}},\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Загрузка изображения с пустым body",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 415\", function () {\r",
+                      "    pm.response.to.have.status(415);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{negative_pet_id}}/uploadImage",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{negative_pet_id}}",
+                    "uploadImage"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Загрузка изображения с неверной form data",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 415\", function () {\r",
+                      "    pm.response.to.have.status(415);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "a89b66bd-d37e-4eb8-b7c7-7cbe2570cf4a",
+                      "src": "/C:/Users/senep/Desktop/CDR август/Макеты Инста/100 - 1 каучук.cdr"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{negative_pet_id}}/uploadImage",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{negative_pet_id}}",
+                    "uploadImage"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Изменение питомца через form urlencoded с пустыми полями",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 405\", function () {\r",
+                      "    pm.response.to.have.status(405);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": []
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/{{negative_pet_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{negative_pet_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удаление несуществующего питомца",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {pm.response.to.have.status(404);})"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{petstore1}}/pet/wrongpetid0",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "wrongpetid0"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удаление с пустым pet_id в endpoint",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {pm.response.to.have.status(404);})"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/pet/",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "pet",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD store",
+      "item": [
+        {
+          "name": "Позитивные проверки",
+          "item": [
+            {
+              "name": "Получить инвентарь питомца",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/inventory",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "inventory"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Разместить заказ для питомца",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "let order_id = Date.now()\r",
+                      "pm.collectionVariables.set(\"order_id\", order_id);\r",
+                      "\r",
+                      "let quantity_in_order = Math.floor(Math.random()*1000) +1\r",
+                      "pm.collectionVariables.set(\"quantity_in_order\", quantity_in_order);\r",
+                      "\r",
+                      "let ship_date = Date.now()\r",
+                      "pm.collectionVariables.set(\"ship_date\", ship_date);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": {{order_id}},\r\n  \"petId\": 0,\r\n  \"quantity\": {{quantity_in_order}},\r\n  \"shipDate\": \"{{ship_date}}\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получить заказ по ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/{{order_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "{{order_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получить заказ, где ID = 1",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/1",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получить заказ, где ID = 10",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/10",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "10"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить заказ по ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+                      "pm.test(\"Response time is less than 300ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/{{order_id}}",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "{{order_id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Негативные проверки",
+          "item": [
+            {
+              "name": "Создание заказа без body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 415\", function () {\r",
+                      "    pm.response.to.have.status(415);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание заказа с пустым ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \r\n  \"petId\": 0,\r\n  \"quantity\": 0,\r\n  \"shipDate\": \"2026-07-22T08:28:17.263Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание заказа с спецсимволами в ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": @@@\r\n  \"petId\": 0,\r\n  \"quantity\": 0,\r\n  \"shipDate\": \"2026-07-22T08:28:17.263Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Создание заказа через метод GET",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 405\", function () {\r",
+                      "    pm.response.to.have.status(405);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 1, \r\n  \"petId\": 0,\r\n  \"quantity\": 0,\r\n  \"shipDate\": \"2026-07-22T08:28:17.263Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получить заказ, где ID = 0",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/0",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "0"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получить заказ, где ID = 11",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/11",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "11"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Получить заказ, где ID = @@@",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/@@@",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "@@@"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить заказ, где ID = 11",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/11",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "11"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить заказ, где ID = @@@",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/@@@",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "@@@"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Удалить заказ с пустым endpoint",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 405\", function () {\r",
+                      "    pm.response.to.have.status(405);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{petstore1}}/store/order/",
+                  "host": [
+                    "{{petstore1}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "petstore1",
+      "value": ""
+    },
+    {
+      "key": "id",
+      "value": ""
+    },
+    {
+      "key": "username",
+      "value": ""
+    },
+    {
+      "key": "password",
+      "value": ""
+    },
+    {
+      "key": "updatedUsername",
+      "value": ""
+    },
+    {
+      "key": "id1",
+      "value": ""
+    },
+    {
+      "key": "username1",
+      "value": ""
+    },
+    {
+      "key": "password1",
+      "value": ""
+    },
+    {
+      "key": "id2",
+      "value": ""
+    },
+    {
+      "key": "username2",
+      "value": ""
+    },
+    {
+      "key": "password2",
+      "value": ""
+    },
+    {
+      "key": "id3",
+      "value": ""
+    },
+    {
+      "key": "username3",
+      "value": ""
+    },
+    {
+      "key": "password3",
+      "value": ""
+    },
+    {
+      "key": "id4",
+      "value": ""
+    },
+    {
+      "key": "username4",
+      "value": ""
+    },
+    {
+      "key": "password4",
+      "value": ""
+    },
+    {
+      "key": "id5",
+      "value": ""
+    },
+    {
+      "key": "id6",
+      "value": ""
+    },
+    {
+      "key": "name",
+      "value": ""
+    },
+    {
+      "key": "name1",
+      "value": ""
+    },
+    {
+      "key": "pet_id",
+      "value": ""
+    },
+    {
+      "key": "category_id",
+      "value": ""
+    },
+    {
+      "key": "category_name",
+      "value": ""
+    },
+    {
+      "key": "pet_name",
+      "value": ""
+    },
+    {
+      "key": "updated_pet_id",
+      "value": ""
+    },
+    {
+      "key": "updated_pet_name",
+      "value": ""
+    },
+    {
+      "key": "negative_pet_id",
+      "value": ""
+    },
+    {
+      "key": "order_id",
+      "value": ""
+    },
+    {
+      "key": "quantity_in_order",
+      "value": ""
+    },
+    {
+      "key": "ship_date",
+      "value": ""
+    },
+    {
+      "key": "boris2",
+      "value": ""
+    }
+  ]
+}
