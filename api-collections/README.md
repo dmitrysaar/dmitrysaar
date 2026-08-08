@@ -6,7 +6,8 @@
 
 ## Интернет-магазин 
 [Публичная коллекция](https://documenter.getpostman.com/view/54716467/2sBY4VLHon)
-[JSON](https://raw.githubusercontent.com/dmitrysaar/dmitry_saar/refs/heads/main/api-collections/intern_demoshopping/InternDS.postman_collection.json?token=GHSAT0AAAAAAEE6MJKWH6HEKFMOSWMMKOIE2TXECUQ)
+
+[JSON](https://github.com/dmitrysaar/dmitry_saar/blob/main/api-collections/intern_demoshopping/InternDS.postman_collection.json)
 
 ## Mythology (упрощенная версия интернет-магазина)
 [Публичная коллекция](https://documenter.getpostman.com/view/54716467/2sBY4VLdWy)
