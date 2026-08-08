@@ -12,6 +12,8 @@
 ## Mythology (упрощенная версия интернет-магазина)
 [Публичная коллекция](https://documenter.getpostman.com/view/54716467/2sBY4VLdWy)
 
+[JSON](https://github.com/dmitrysaar/dmitry_saar/blob/main/api-collections/Mythology/Myth.postman_collection.json)
+
 ## PetStore
 [Публичная коллекция](https://documenter.getpostman.com/view/54716467/2sBY4VLdX2)
 
