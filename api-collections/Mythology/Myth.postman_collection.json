@@ -1,0 +1,1604 @@
+{
+  "info": {
+    "_postman_id": "0bb7a3e1-a031-400e-ba0b-505a1072def5",
+    "name": "Myth",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54716467",
+    "_collection_link": "https://go.postman.co/collection/54716467-0bb7a3e1-a031-400e-ba0b-505a1072def5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "E2E",
+      "item": [
+        {
+          "name": "Регистрация нового пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "\r",
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "let username = \"user_\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"username\", username);\r",
+                  "\r",
+                  "let password =\"randompass\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"password\", password);\r",
+                  "\r",
+                  "console.log(\"create_user:\");\r",
+                  "console.log(\"1\", username);\r",
+                  "console.log(\"1\", password);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"{{username}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/register",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Вход и получение токена",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});\r",
+                  "\r",
+                  "const jsonResponse = pm.response.json();\r",
+                  "const token = jsonResponse.token;\r",
+                  "pm.collectionVariables.set(\"token_for_myth\", token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"{{username}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/login",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Призвать новую сущность",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "let name = \"thisisrandomgodname\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"name\", name);\r",
+                  "\r",
+                  "let category =\"category\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"category\", category);\r",
+                  "\r",
+                  "console.log(\"create_something:\");\r",
+                  "console.log(\"1\", name);\r",
+                  "console.log(\"1\", category);\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});\r",
+                  "\r",
+                  "const jsonResponse = pm.response.json();\r",
+                  "const id = jsonResponse.id;\r",
+                  "pm.collectionVariables.set(\"id\", id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"{{name}}\",\r\n  \"category\": \"{{category}}\",\r\n  \"desc\": \"randomdesc\",\r\n  \"img\": \"https://picsum.photos/200/300?random=1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Найти созданную сущность по ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Полное обновление сущности",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "let name_put = \"thisisrandomgodname\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"name_put\", name_put);\r",
+                  "\r",
+                  "let category_put =\"category\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"category_put\", category_put);\r",
+                  "\r",
+                  "console.log(\"create_something:\");\r",
+                  "console.log(\"1\", name_put);\r",
+                  "console.log(\"1\", category_put);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"{{name_put}}\",\r\n  \"category\": \"{{category_put}}\",\r\n  \"desc\": \"randomdesc\",\r\n  \"img\": \"https://picsum.photos/200/300?random=1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Найти полностью обновленную сущность по ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Частичное обновление сущности",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "let name_patch = \"thisisrandomgodname\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"name_patch\", name_patch);\r",
+                  "\r",
+                  "let category_patch =\"category\" + Math.floor(Math.random()* 10) + 1;\r",
+                  "pm.collectionVariables.set(\"category_patch\", category_patch);\r",
+                  "\r",
+                  "console.log(\"create_something:\");\r",
+                  "console.log(\"1\", name_patch);\r",
+                  "console.log(\"1\", category_patch);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"{{name_patch}}\",\r\n  \"category\": \"{{category_patch}}\",\r\n  \"desc\": \"randomdesc\",\r\n  \"img\": \"https://picsum.photos/200/300?random=1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Найти частично обновленную сущность по ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удалить сущность",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 200ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Проверить, что сущность удалена",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 300ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Негативные проверки",
+      "item": [
+        {
+          "name": "Регистрация пользователя без password в body",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {\r",
+                  "    pm.response.to.have.status(500);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"hercules_77\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/register",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Регистрация уже зарегистрированного пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"@@@\",\r\n  \"password\": \"123456q\"\r\n}\r\n\r\n//пользователь с юзернейм @@@ уже зарегистрирован\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/register",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Регистрация пользователя с 3 пробелами в username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"   \"  ,\r\n  \"password\": \"123456q\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/register",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Вход без body",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {\r",
+                  "    pm.response.to.have.status(500);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/login",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Вход с 5 пробелами в username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"     \"  ,\r\n  \"password\": \"123456q\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/login",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Вход без пароля (пользователь зарегистрирован до теста)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"@@@\" ,\r\n  \"password\": \"\"\r\n}\r\n\r\n// username @@@ , pass 123456q\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/login",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание новой сущности без body",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {\r",
+                  "    pm.response.to.have.status(500);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание новой сущности без авторизации",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон1\",\r\n  \"category\": \"gods1\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание уже существующей сущности",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон\",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание сущности с пустым name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"\",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание сущности с пустым category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон\",\r\n  \"category\": \"\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание сущности с пробелами в name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"   \",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание сущности с пробелами в category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон\",\r\n  \"category\": \"    \",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Поиск сущности с неверным id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/111111",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "111111"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Полное изменение сущности без авторизации",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон\",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}\r\n\r\n\r\n\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Частичное изменение сущности без авторизации",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон\",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}\r\n\r\n\r\n\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Полное изменение сущности без body",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Частичное изменение сущности без body",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Полное изменение сущности без name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"category\": \"category31\",\r\n    \"desc\": \"randomdesc\",\r\n    \"img\": \"https://picsum.photos/200/300?random=1\"\r\n}\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Полное изменение сущности без category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"thisisrandomgodname31\",\r\n    \"desc\": \"randomdesc\",\r\n    \"img\": \"https://picsum.photos/200/300?random=1\"\r\n}\r\n\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/{{id}}",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Полное изменение сущности доступного только для чтения",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Посейдон\",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"Бог морей и землетрясений.\",\r\n  \"img\": \"https://images.unsplash.com/photo-1503152394-c571994fd383\"\r\n}\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/1",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Частичное изменение сущности доступного только для чтения",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"string\",\r\n  \"category\": \"gods\",\r\n  \"desc\": \"string\",\r\n  \"img\": \"string\"\r\n}\r\n\r\n\r\n//\"id\": 40, \"name\": \"thisisrandomgodname31\" \"category\": \"category31\" \"desc\": \"randomdesc\"",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/1",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление несуществующей сущности",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/111111",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "111111"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление сущности доступной только для чтения",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{myth}}/mythology/1",
+              "host": [
+                "{{myth}}"
+              ],
+              "path": [
+                "mythology",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token_for_myth}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "myth",
+      "value": ""
+    },
+    {
+      "key": "username",
+      "value": ""
+    },
+    {
+      "key": "password",
+      "value": ""
+    },
+    {
+      "key": "token_for_myth",
+      "value": ""
+    },
+    {
+      "key": "name",
+      "value": ""
+    },
+    {
+      "key": "category",
+      "value": ""
+    },
+    {
+      "key": "id",
+      "value": ""
+    },
+    {
+      "key": "name_put",
+      "value": ""
+    },
+    {
+      "key": "category_put",
+      "value": ""
+    },
+    {
+      "key": "name_patch",
+      "value": ""
+    },
+    {
+      "key": "category_patch",
+      "value": ""
+    }
+  ]
+}
