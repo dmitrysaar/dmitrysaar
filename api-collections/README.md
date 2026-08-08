@@ -14,3 +14,5 @@
 
 ## PetStore
 [Публичная коллекция](https://documenter.getpostman.com/view/54716467/2sBY4VLdX2)
+
+[JSON](https://github.com/dmitrysaar/dmitry_saar/blob/main/api-collections/petstore/PetStore.postman_collection.json)
