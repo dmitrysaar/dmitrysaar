@@ -8,7 +8,8 @@
 
 
 ## 2. Оформление заказа : Не приходит письмо на почту, после успешно оформленного заказа
-<img width="1170" height="675" alt="2  Не приходит письмо на почту, после успешно оформленного заказа" src="https://github.com/user-attachments/assets/fb3ddd5f-0be6-4506-86da-69b9f13a7f55" />
+<img width="1224" height="640" alt="image" src="https://github.com/user-attachments/assets/f366a529-fd08-4103-b3fa-7e44d8bc8f3e" />
+
 
 
 
@@ -18,7 +19,8 @@
 
 
 ## 4. Добавление товара в корзину : Добавляется товар с граничным значением "0", негативным "-1" и пустым полем
-<img width="1162" height="712" alt="4  Граничные значения" src="https://github.com/user-attachments/assets/38dd1be7-3901-4bd7-a9b4-2570e06e7790" />
+<img width="1234" height="802" alt="image" src="https://github.com/user-attachments/assets/028fb70a-5d3e-4439-b4bf-f36675b48b1f" />
+
 
 
 
