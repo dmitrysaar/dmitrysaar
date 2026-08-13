@@ -7,7 +7,7 @@
 
 
 ## Портфолио
-- [**Чек-листы**](https://github.com/dmitrysaar/dmitrysaar/tree/main/checklists) — для интернет-магазина, Яндекс поиска, формы "забыли пароль" с Aliexpress, калькулятора и мобильного приложения
+- [**Чек-листы**](https://github.com/dmitrysaar/dmitrysaar/tree/main/checklists) — для интернет-магазина, Яндекс поиска, Aliexpress, калькулятора и мобильного приложения
 - [**Тест-кейсы**](https://github.com/dmitrysaar/dmitrysaar/tree/main/testcases) — примеры тест-кейсов из TestIT
 - [**Баг-репорты**](https://github.com/dmitrysaar/dmitrysaar/tree/main/bug-reports) — отчёты о найденных дефектах
 - [**SQL-запросы**](https://github.com/dmitrysaar/dmitrysaar/tree/main/SQL%20queries) — примеры запросов для анализа данных
