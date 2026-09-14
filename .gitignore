@@ -1,0 +1,28 @@
+# VS Code workspace
+*.code-workspace
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+
+# Базы данных SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Отчёты и временные файлы
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Системное
+.DS_Store
+Thumbs.db
