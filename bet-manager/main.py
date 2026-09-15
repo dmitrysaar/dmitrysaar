@@ -50,7 +50,7 @@ async def validation_exception_handler(request, exc):
     
 # --- ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "bet_base.db")
+DB_PATH = os.getenv("BET_DB_PATH", os.path.join(BASE_DIR, "bet_base.db"))
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
