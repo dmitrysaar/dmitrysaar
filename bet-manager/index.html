@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bet Manager</title>
+    <style>
+         @font-face {
+        font-family: 'BebasNeue-Regular';
+        src: url('BebasNeue-Regular.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #222;
+        }
+        h1 {
+    font-family: 'BebasNeue-Regular';
+    font-size: 60px;
+    letter-spacing: 7px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+        /* Кнопки */
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .btn-primary,
+    .btn-success,
+    .btn-danger,
+    .btn-secondary {
+        background: #0079a5;
+        color: #fff;
+    }
+    .btn-primary:hover,
+    .btn-success:hover,
+    .btn-danger:hover,
+    .btn-secondary:hover {
+        background: #005f7f;
+    }
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .header-actions button {
+    min-width: 220px;
+    padding: 12px 24px;
+    font-size: 16px;
+    text-align: center;
+}
+
+        /* Таблица */
+        .table-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        .toggle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .toggle-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .toggle-header .arrow {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        .toggle-header .arrow.open {
+            transform: rotate(180deg);
+        }
+        .table-content {
+            display: none;
+            margin-top: 16px;
+            overflow-x: auto;
+        }
+        .table-content.open {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th,
+        td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #eee;
+            font-weight: 600;
+        }
+        tr:hover {
+            background: #fafafa;
+        }
+        .edit-input {
+            width: 100%;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .empty-row {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+        .load-more-cell {
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* Модальные окна */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: #fff;
+            max-width: 600px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+        }
+        .modal-close:hover {
+            color: #222;
+        }
+        .modal h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .modal label {
+            display: block;
+            font-weight: 600;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+        .modal input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .modal input.error {
+            border-color: #b22222;
+        }
+        .modal .error-text {
+            color: #b22222;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+        }
+        .modal .error-text.show {
+            display: block;
+        }
+        .modal .success-text {
+            color: #1e7e34;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+        }
+        .modal .success-text.show {
+            display: block;
+        }
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .form-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .divider {
+            border: none;
+            border-top: 2px dashed #ddd;
+            margin: 24px 0;
+        }
+
+        .msg-error {
+            color: #b22222;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+        .msg-success {
+            color: #1e7e34;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+        .profit-result {
+            background: #f0f0f0;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .btn-action {
+    background: #0079a5;
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 13px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-action:hover {
+    background: #005f7f;
+}
+    </style>
+</head>
+<body>
+
+    <h1>⚽Bet Manager</h1>
+
+    <div class="header-actions">
+        <button class="btn btn-primary" id="openAddBetModal">➕ Добавить ставку</button>
+        <button class="btn btn-success" id="openProfitModal">📊 Рассчитать прибыль</button>
+    </div>
+
+    <!-- Таблица -->
+    <div class="table-section">
+        <div class="toggle-header" id="toggleTable">
+            <h3>📋 Все ставки</h3>
+            <span class="arrow" id="tableArrow">▼</span>
+        </div>
+        <div class="table-content" id="tableContent">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Матч</th>
+                        <th>Тип</th>
+                        <th>Сумма</th>
+                        <th>Коэф.</th>
+                        <th>Результат</th>
+                        <th>Прогнозист</th>
+                        <th>Ставка сыграла?</th>
+                    </tr>
+                </thead>
+                <tbody id="betsTableBody">
+                    <tr><td colspan="8" class="empty-row">Загрузка...</td></tr>
+                </tbody>
+                <tfoot id="tableFooter" style="display:none;">
+                    <tr>
+                        <td colspan="8" class="load-more-cell">
+                            <button class="btn btn-secondary" id="loadMoreBtn">📥 Показать ещё</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div id="globalError" class="msg-error"></div>
+    <div id="globalSuccess" class="msg-success"></div>
+
+    <!-- ===== МОДАЛКА: ДОБАВИТЬ СТАВКУ ===== -->
+    <div class="modal-overlay" id="addBetModal">
+        <div class="modal">
+            <button class="modal-close" id="closeAddBetModal">&times;</button>
+            <h2>➕ Добавить ставку</h2>
+
+            <!-- Блок создания матча -->
+            <h3 style="margin:0 0 10px 0; font-size:16px;">📌 Создать матч (если его нет)</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <input type="text" id="new_match_date" placeholder="Дата (ДД.ММ.ГГГГ)" style="flex:1; min-width:120px; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                <div class="error-text" id="new_match_date_error">Введите дату в формате ДД.ММ.ГГГГ</div>
+                <input type="text" id="new_tournament" placeholder="Турнир" style="flex:1; min-width:120px; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                <div class="error-text" id="new_tournament_error">Турнир: 2–30 символов, только буквы, цифры, пробел, дефис</div>
+                <input type="text" id="new_team1" placeholder="Команда 1" style="flex:1; min-width:100px; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                <div class="error-text" id="new_team1_error">Команда 1: 2–30 символов, только буквы, цифры, пробел, дефис</div>
+                <input type="text" id="new_team2" placeholder="Команда 2" style="flex:1; min-width:100px; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                <div class="error-text" id="new_team2_error">Команда 2: 2–30 символов, только буквы, цифры, пробел, дефис</div>
+                <button class="btn btn-primary" id="createMatchFromModal" style="padding:8px 16px; flex:0 0 auto;">➕ Создать</button>
+            </div>
+            <div id="createMatchModalSuccess" class="success-text"></div>
+            <div id="createMatchModalError" class="error-text"></div>
+
+            <hr class="divider">
+
+            <!-- Блок добавления ставки -->
+            <label>ID матча (заполнится автоматически)</label>
+            <input type="number" id="bet_match_id" placeholder="ID матча" min="1">
+            <div class="error-text" id="bet_match_id_error">Введите положительное число</div>
+
+            <label>Тип ставки</label>
+            <input type="text" id="bet_type" placeholder="Например, Победа Арсенала">
+            <div class="error-text" id="bet_type_error">Тип ставки: 2–100 символов, разрешены буквы, цифры, пробел, > < + - .</div>
+
+            <label>Сумма ставки</label>
+            <input type="number" id="bet_amount" placeholder="Например, 1000" step="0.01" min="0.01">
+            <div class="error-text" id="bet_amount_error">Введите положительное число</div>
+
+            <label>Коэффициент</label>
+            <input type="number" id="bet_coefficient" placeholder="Например, 1.85" step="0.01" min="1.01">
+            <div class="error-text" id="bet_coefficient_error">Коэффициент должен быть > 1.0</div>
+
+            <label>Результат (выигрыш/проигрыш)</label>
+            <input type="number" id="bet_win_loss" placeholder="Например, 1850 или -1000" step="0.01">
+            <div class="error-text" id="bet_win_loss_error">Результат: от -1 000 000 до 1 000 000</div>
+
+            <label>Ник прогнозиста</label>
+            <input type="text" id="bet_bettor_nick" placeholder="Например, Vasya">
+            <div class="error-text" id="bet_bettor_nick_error">Ник: 2–30 символов, только буквы и цифры</div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" id="submitBet" disabled>💾 Сохранить ставку</button>
+                <button class="btn btn-secondary" id="cancelAddBet">Отмена</button>
+            </div>
+            <div id="addBetModalSuccess" class="success-text"></div>
+            <div id="addBetModalError" class="error-text"></div>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛКА: ПРИБЫЛЬ ===== -->
+    <div class="modal-overlay" id="profitModal">
+        <div class="modal">
+            <button class="modal-close" id="closeProfitModal">&times;</button>
+            <h2>📊 Рассчитать прибыль</h2>
+            <label>Ник прогнозиста</label>
+            <input type="text" id="profit_nick" placeholder="Например, Vasya">
+            <div class="error-text" id="profit_nick_error">Введите ник</div>
+            <label>Дата от</label>
+            <input type="text" id="profit_from" placeholder="ДД.ММ.ГГГГ">
+            <label>Дата до</label>
+            <input type="text" id="profit_to" placeholder="ДД.ММ.ГГГГ">
+            <div class="form-actions">
+                <button class="btn btn-success" id="calcProfit">🧮 Рассчитать</button>
+                <button class="btn btn-secondary" id="cancelProfit">Закрыть</button>
+            </div>
+            <div id="profitResult" class="profit-result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+        let betsData = [];
+        let matchesMap = {};
+        let bettorsMap = {};
+        let currentIndex = 0;
+        const DISPLAY_LIMIT = 20;
+
+        // ---- Вспомогательные функции ----
+        function show(id, msg) {
+            const el = document.getElementById(id);
+            if (el) { el.textContent = msg;
+                el.style.display = 'block'; }
+        }
+
+        function hide(id) {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        }
+
+        function showGlobalError(msg) { show('globalError', msg);
+            hide('globalSuccess'); }
+        function showGlobalSuccess(msg) { show('globalSuccess', msg);
+            hide('globalError'); }
+        function clearGlobalMessages() { hide('globalError');
+            hide('globalSuccess'); }
+
+        // ---- Загрузка матчей и бетторов ----
+        async function loadMatches() {
+            const res = await fetch(`${API_BASE}/matches`);
+            if (!res.ok) return {};
+            const data = await res.json();
+            const map = {};
+            data.forEach(m => { map[m.id] = `${m.team1} — ${m.team2}`; });
+            return map;
+        }
+
+        async function loadBettors() {
+            const res = await fetch(`${API_BASE}/bettor`);
+            if (!res.ok) return {};
+            const data = await res.json();
+            const map = {};
+            data.forEach(b => { map[b.id] = b.nickname; });
+            return map;
+        }
+
+        // ---- Валидация матча ----
+        function validateMatchField(id, errorId, validator) {
+            const input = document.getElementById(id);
+            const error = document.getElementById(errorId);
+            if (!input || !error) return false;
+            const value = input.value.trim();
+            const valid = validator(value);
+            if (!valid) {
+                input.classList.add('error');
+                error.classList.add('show');
+            } else {
+                input.classList.remove('error');
+                error.classList.remove('show');
+            }
+            return valid;
+        }
+
+        function validateMatchDate(value) {
+            return /^\d{2}\.\d{2}\.\d{4}$/.test(value);
+        }
+
+        function validateMatchText(value) {
+            return value.length >= 2 && value.length <= 30 && /^[A-Za-zА-Яа-я0-9\s\-]+$/.test(value);
+        }
+
+        function isMatchFormValid() {
+            const date = document.getElementById('new_match_date').value.trim();
+            const tournament = document.getElementById('new_tournament').value.trim();
+            const team1 = document.getElementById('new_team1').value.trim();
+            const team2 = document.getElementById('new_team2').value.trim();
+            return validateMatchDate(date) &&
+                validateMatchText(tournament) &&
+                validateMatchText(team1) &&
+                validateMatchText(team2);
+        }
+
+        // ---- Валидация ставки ----
+        function validateBetField(id, errorId, validator) {
+            const input = document.getElementById(id);
+            const error = document.getElementById(errorId);
+            if (!input || !error) return false;
+            const value = input.value.trim();
+            const valid = validator(value);
+            if (!valid) {
+                input.classList.add('error');
+                error.classList.add('show');
+            } else {
+                input.classList.remove('error');
+                error.classList.remove('show');
+            }
+            return valid;
+        }
+
+        function validateBetMatchId(value) {
+            const num = parseInt(value);
+            return !isNaN(num) && num > 0;
+        }
+
+        function validateBetType(value) {
+            return value.length >= 2 && value.length <= 100 && /^[A-Za-zА-Яа-я0-9\s><+\-\.]+$/.test(value);
+        }
+
+        function validateBetAmount(value) {
+            const num = parseFloat(value);
+            return !isNaN(num) && num > 0;
+        }
+
+        function validateBetCoefficient(value) {
+            const num = parseFloat(value);
+            return !isNaN(num) && num > 1.0;
+        }
+
+        function validateBetWinLoss(value) {
+            const num = parseFloat(value);
+            return !isNaN(num) && num >= -1000000 && num <= 1000000;
+        }
+
+        function validateBetNick(value) {
+            return value.length >= 2 && value.length <= 30 && /^[A-Za-zА-Яа-я0-9\s]+$/.test(value);
+        }
+
+        function isBetFormValid() {
+            const matchId = document.getElementById('bet_match_id').value.trim();
+            const betType = document.getElementById('bet_type').value.trim();
+            const betAmount = document.getElementById('bet_amount').value.trim();
+            const coefficient = document.getElementById('bet_coefficient').value.trim();
+            const winLoss = document.getElementById('bet_win_loss').value.trim();
+            const nick = document.getElementById('bet_bettor_nick').value.trim();
+            return validateBetMatchId(matchId) &&
+                validateBetType(betType) &&
+                validateBetAmount(betAmount) &&
+                validateBetCoefficient(coefficient) &&
+                validateBetWinLoss(winLoss) &&
+                validateBetNick(nick);
+        }
+
+        // ---- Обновление состояния кнопок ----
+        function updateMatchButton() {
+            const btn = document.getElementById('createMatchFromModal');
+            btn.disabled = !isMatchFormValid();
+        }
+
+        function updateBetButton() {
+            const btn = document.getElementById('submitBet');
+            btn.disabled = !isBetFormValid();
+        }
+
+        // ---- Загрузка и рендер ставок ----
+        async function loadBets() {
+            try {
+                const [betsRes, matchesMapData, bettorsMapData] = await Promise.all([
+                    fetch(`${API_BASE}/bets`),
+                    loadMatches(),
+                    loadBettors()
+                ]);
+                if (!betsRes.ok) throw new Error('Не удалось загрузить ставки');
+                betsData = await betsRes.json();
+                betsData.sort((a, b) => b.id - a.id);
+                matchesMap = matchesMapData;
+                bettorsMap = bettorsMapData;
+                currentIndex = 0;
+                renderTable(betsData);
+            } catch (e) {
+                showGlobalError('❌ Ошибка загрузки ставок: ' + e.message);
+            }
+        }
+
+        function renderTable(bets, append = false) {
+            const tbody = document.getElementById('betsTableBody');
+            const footer = document.getElementById('tableFooter');
+            if (!append) { tbody.innerHTML = '';
+                currentIndex = 0; }
+            if (!bets || bets.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="empty-row">Нет ставок</td></tr>';
+                footer.style.display = 'none';
+                return;
+            }
+            const chunk = bets.slice(currentIndex, currentIndex + DISPLAY_LIMIT);
+            currentIndex += chunk.length;
+            let html = '';
+            chunk.forEach(b => {
+                const matchName = matchesMap[b.match_id] || `Матч #${b.match_id}`;
+                const bettorName = bettorsMap[b.bettor_id] || `ID: ${b.bettor_id}`;
+                html += `<tr>
+                            <td>${b.id}</td>
+                            <td style="white-space: nowrap;">${matchName}</td>
+                            <td>${b.bet_type}</td>
+                            <td>${b.bet_amount}</td>
+                            <td>${b.coefficient}</td>
+                        <td>
+    <input type="number" class="edit-input" id="winloss_${b.id}" value="${b.win_or_loss}" step="0.01" readonly />
+</td>
+<td>${bettorName}</td>
+<td style="white-space: nowrap;">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+        <button class="btn-action" onclick="updateWinLoss(${b.id}, 'win', ${b.bet_amount}, ${b.coefficient})">Выиграла</button>
+        <button class="btn-action" onclick="updateWinLoss(${b.id}, 'loss', ${b.bet_amount}, ${b.coefficient})">Проиграла</button>
+        <button class="btn-action" onclick="updateWinLoss(${b.id}, 'return', ${b.bet_amount}, ${b.coefficient})">Возврат</button>
+    </div>
+</td>  
+                        </tr>`;
+            });
+            if (append) {
+                tbody.insertAdjacentHTML('beforeend', html);
+            } else {
+                tbody.innerHTML = html;
+            }
+            if (currentIndex < bets.length) {
+                footer.style.display = 'table-row';
+            } else {
+                footer.style.display = 'none';
+            }
+        }
+
+        // ---- Обновление результата ----
+window.updateWinLoss = async function(betId, resultType, betAmount, coefficient) {
+    let newValue = 0;
+    
+    if (resultType === 'win') {
+        // Чистая прибыль: bet_amount * (coefficient - 1)
+        newValue = Math.round(betAmount * (coefficient - 1) * 100) / 100;
+    } else if (resultType === 'loss') {
+        // Проигрыш: -bet_amount
+        newValue = -betAmount;
+    } else if (resultType === 'return') {
+        // Возврат: 0
+        newValue = 0;
+    }
+    
+    try {
+        const res = await fetch(`${API_BASE}/bets/${betId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ win_or_loss: newValue })
+        });
+        if (!res.ok) throw new Error('Ошибка обновления');
+        showGlobalSuccess(`✅ Результат ставки ${betId} обновлён (${resultType})`);
+        loadBets();
+    } catch (e) {
+        showGlobalError('❌ ' + e.message);
+    }
+};
+
+        // ---- Создание матча ----
+        document.getElementById('createMatchFromModal').addEventListener('click', async () => {
+            const date = document.getElementById('new_match_date').value.trim();
+            const tournament = document.getElementById('new_tournament').value.trim();
+            const team1 = document.getElementById('new_team1').value.trim();
+            const team2 = document.getElementById('new_team2').value.trim();
+            hide('createMatchModalSuccess');
+            hide('createMatchModalError');
+            if (!isMatchFormValid()) return;
+            try {
+                const res = await fetch(`${API_BASE}/matches`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ match_date: date, tournament, team1, team2 })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    show('createMatchModalError', '❌ ' + (data.detail || data.message || 'Ошибка создания матча'));
+                    return;
+                }
+                show('createMatchModalSuccess', `✅ Матч создан! ID: ${data.id}`);
+                document.getElementById('bet_match_id').value = data.id;
+                document.getElementById('new_match_date').value = '';
+                document.getElementById('new_tournament').value = '';
+                document.getElementById('new_team1').value = '';
+                document.getElementById('new_team2').value = '';
+                loadMatches();
+                updateBetButton();
+            } catch (e) {
+                show('createMatchModalError', '❌ ' + e.message);
+            }
+        });
+
+        // ---- Добавление ставки ----
+        document.getElementById('submitBet').addEventListener('click', async () => {
+            clearGlobalMessages();
+            const matchId = parseInt(document.getElementById('bet_match_id').value);
+            const betType = document.getElementById('bet_type').value.trim();
+            const betAmount = parseFloat(document.getElementById('bet_amount').value);
+            const coefficient = parseFloat(document.getElementById('bet_coefficient').value);
+            const winLoss = parseFloat(document.getElementById('bet_win_loss').value);
+            const nick = document.getElementById('bet_bettor_nick').value.trim();
+            if (!isBetFormValid()) return;
+            const bettors = await loadBettors();
+            const bettorEntry = Object.entries(bettors).find(([id, name]) => name.toLowerCase() === nick.toLowerCase());
+            if (!bettorEntry) {
+                show('addBetModalError', `❌ Прогнозист с ником "${nick}" не найден`);
+                return;
+            }
+            const bettorId = parseInt(bettorEntry[0]);
+            const payload = { match_id: matchId, bet_type: betType, bet_amount: betAmount, coefficient, win_or_loss: winLoss,
+                bettor_id: bettorId };
+            try {
+                const res = await fetch(`${API_BASE}/bets`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload) });
+                const data = await res.json();
+                if (!res.ok) { show('addBetModalError', '❌ ' + (data.detail || data.message || 'Ошибка')); return; }
+                show('addBetModalSuccess', `✅ Ставка добавлена! ID: ${data.id}`);
+                document.getElementById('bet_match_id').value = '';
+                document.getElementById('bet_type').value = '';
+                document.getElementById('bet_amount').value = '';
+                document.getElementById('bet_coefficient').value = '';
+                document.getElementById('bet_win_loss').value = '';
+                document.getElementById('bet_bettor_nick').value = '';
+                loadBets();
+                setTimeout(() => document.getElementById('addBetModal').classList.remove('active'), 1200);
+            } catch (e) {
+                show('addBetModalError', '❌ ' + e.message);
+            }
+        });
+
+        // ---- Расчёт прибыли ----
+document.getElementById('calcProfit').addEventListener('click', async () => {
+    const nick = document.getElementById('profit_nick').value.trim();
+    const from = document.getElementById('profit_from').value.trim();
+    const to = document.getElementById('profit_to').value.trim();
+    const resultEl = document.getElementById('profitResult');
+
+    hide('profit_nick_error');
+
+    if (!nick) {
+        show('profit_nick_error', 'Введите ник');
+        return;
+    }
+    if (!/^\d{2}\.\d{2}\.\d{4}$/.test(from) || !/^\d{2}\.\d{2}\.\d{4}$/.test(to)) {
+        resultEl.textContent = '⚠️ Неверный формат даты (ДД.ММ.ГГГГ)';
+        resultEl.style.display = 'block';
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}/profit?nickname=${encodeURIComponent(nick)}&date_from=${from}&date_to=${to}`);
+        const data = await res.json();
+        if (res.ok) {
+            resultEl.textContent = `💰 Прибыль прогнозиста "${nick}": ${data.profit.toFixed(2)} ₽`;
+        } else {
+            resultEl.textContent = '❌ ' + (data.error || 'Ошибка');
+        }
+        resultEl.style.display = 'block';
+    } catch (e) {
+        resultEl.textContent = '❌ ' + e.message;
+        resultEl.style.display = 'block';
+    }
+});
+        // ---- События валидации ----
+        ['new_match_date', 'new_tournament', 'new_team1', 'new_team2'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', updateMatchButton);
+                input.addEventListener('blur', updateMatchButton);
+            }
+        });
+
+        ['bet_match_id', 'bet_type', 'bet_amount', 'bet_coefficient', 'bet_win_loss', 'bet_bettor_nick'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', updateBetButton);
+                input.addEventListener('blur', updateBetButton);
+            }
+        });
+
+        // ---- Сворачивание таблицы ----
+        document.getElementById('toggleTable').addEventListener('click', () => {
+            const content = document.getElementById('tableContent');
+            const arrow = document.getElementById('tableArrow');
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+        });
+
+        // ---- Кнопка "Показать ещё" ----
+        document.getElementById('loadMoreBtn').addEventListener('click', () => {
+            renderTable(betsData, true);
+        });
+
+        // ---- Модалки ----
+        document.getElementById('openAddBetModal').addEventListener('click', () => {
+            document.getElementById('addBetModal').classList.add('active');
+            clearGlobalMessages();
+            hide('addBetModalSuccess');
+            hide('addBetModalError');
+            hide('createMatchModalSuccess');
+            hide('createMatchModalError');
+            updateMatchButton();
+            updateBetButton();
+        });
+        document.getElementById('closeAddBetModal').addEventListener('click', () => {
+            document.getElementById('addBetModal').classList.remove('active');
+        });
+        document.getElementById('cancelAddBet').addEventListener('click', () => {
+            document.getElementById('addBetModal').classList.remove('active');
+        });
+        document.getElementById('openProfitModal').addEventListener('click', () => {
+            document.getElementById('profitModal').classList.add('active');
+            document.getElementById('profitResult').style.display = 'none';
+        });
+        document.getElementById('closeProfitModal').addEventListener('click', () => {
+            document.getElementById('profitModal').classList.remove('active');
+        });
+        document.getElementById('cancelProfit').addEventListener('click', () => {
+            document.getElementById('profitModal').classList.remove('active');
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('active');
+        });
+
+        loadBets();
+    </script>
+
+</body>
+</html>

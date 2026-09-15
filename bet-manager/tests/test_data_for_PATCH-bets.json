@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Изменение ставки с пустым body",
+    "body": {},
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с граничным значением -1000001 в поле win_or_loss",
+    "body": {
+      "win_or_loss": -1000001
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с граничным значением 1000001 в поле win_or_loss",
+    "body": {
+      "win_or_loss": 1000001
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с граничным значением 1000000.01 в поле win_or_loss",
+    "body": {
+      "win_or_loss": 1000000.01
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с граничным значением -1000000.01 в поле win_or_loss",
+    "body": {
+      "win_or_loss": -1000000.01
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с кириллицей в поле win_or_loss",
+    "body": {
+      "win_or_loss": "триста"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с латиницей в поле win_or_loss",
+    "body": {
+      "win_or_loss": "three"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки со спец. символами в поле win_or_loss",
+    "body": {
+      "win_or_loss": "@#$"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение ставки с пробелом в поле win_or_loss",
+    "body": {
+      "win_or_loss": "30 0"
+    },
+    "expected_status": 400
+  }
+]

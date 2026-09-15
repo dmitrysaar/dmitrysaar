@@ -1,0 +1,254 @@
+[
+ {
+    "name": "Пустое поле match_date",
+    "match_date": "",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:0",
+    "expected_status": 400
+  },
+  {
+    "name": "Пустое поле tournament",
+    "match_date": "03.09.2026",
+    "tournament": "",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:0",
+    "expected_status": 400
+  },
+  {
+    "name": "Пустое поле team1",
+    "match_date": "03.09.2026",
+    "tournament": "Серия А",
+    "team1": "",
+    "team2": "Тест2",
+    "match_result": "1:0",
+    "expected_status": 400
+  },
+  {
+    "name": "Пустое поле team2",
+    "match_date": "03.09.2026",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "",
+    "match_result": "1:0",
+    "expected_status": 400
+  },
+  {
+    "name": "Пустое поле match_result",
+    "match_date": "03.09.2026",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с датой из 7 символов в поле match_date",
+    "match_date": "03.09.9",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с датой из 11 символов в поле match_date",
+    "match_date": "03.09.20267",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с кириллицей в поле match_date",
+    "match_date": "аб.вг.вцвц",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с латиницей в поле match_date",
+    "match_date": "ab.ab.cdda",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча со спец. символами в поле match_date",
+    "match_date": "@#.#@.@!@#",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с пробелом внутри даты 29. 8.2026",
+    "match_date": "29. 8.2026",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с несуществующей датой 31.02.2026",
+    "match_date": "31.02.2026",
+    "tournament": "Серия А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с 1 символом в поле tournament",
+    "match_date": "30.01.2026",
+    "tournament": "А",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с 31 символом в поле tournament",
+    "match_date": "30.01.2026",
+    "tournament": "ААААААААААААААААААААААААААААААА",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с запрещенными спец.символами в поле tournament",
+    "match_date": "30.01.2026",
+    "tournament": "@#@#!",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с пробелом в начале, в поле tournament",
+    "match_date": "30.01.2026",
+    "tournament": " АПЛ",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с 1 символом в поле team1",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "А",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с 31 символом в поле team1",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "ААААААААААААААААААААААААААААААА",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с запрещенными спец.символами в поле team1",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "@#@#@!",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+ {
+    "name": "Добавление матча с пробелом в начале, в поле team1",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": " Тест1",
+    "team2": "Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+{
+    "name": "Добавление матча с 1 символом в поле team2",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "А",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с 31 символом в поле team2",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "ААААААААААААААААААААААААААААААА",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с запрещенными спец.символами в поле team2",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "@#@#@!",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с пробелом в начале, в поле team2",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": " Тест2",
+    "match_result": "1:1",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с кириллицей в поле match_result",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "два:один",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с латиницей в поле match_result",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "two:one",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с запрещенными спец.символами в поле match_result (кроме :)",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "2;1",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление матча с пробелом в середине в поле match_result",
+    "match_date": "30.01.2026",
+    "tournament": "АПЛ",
+    "team1": "Тест1",
+    "team2": "Тест2",
+    "match_result": "2 : 1",
+    "expected_status": 400
+  }
+]

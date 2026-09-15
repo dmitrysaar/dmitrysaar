@@ -1,0 +1,78 @@
+newman
+
+b_app
+
+Iteration 1/9
+
+□ Ставки / Негативные сценарии / PATCH-DDT_bets
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 20ms]
+  √  Изменение ставки с пустым body
+
+Iteration 2/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 2ms]
+  √  Изменение ставки с граничным значением -1000001 в поле win_or_loss
+
+Iteration 3/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 2ms]
+  √  Изменение ставки с граничным значением 1000001 в поле win_or_loss
+
+Iteration 4/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 3ms]
+  √  Изменение ставки с граничным значением 1000000.01 в поле win_or_loss
+
+Iteration 5/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 2ms]
+  √  Изменение ставки с граничным значением -1000000.01 в поле win_or_loss
+
+Iteration 6/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 3ms]
+  √  Изменение ставки с кириллицей в поле win_or_loss
+
+Iteration 7/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 2ms]
+  √  Изменение ставки с латиницей в поле win_or_loss
+
+Iteration 8/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 3ms]
+  √  Изменение ставки со спец. символами в поле win_or_loss
+
+Iteration 9/9
+
+└ Data Driven PATCH bets
+  PATCH http://127.0.0.1:8000/bets/1 [400 Bad Request, 278B, 3ms]
+  √  Изменение ставки с пробелом в поле win_or_loss
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               9 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │               9 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │               9 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │               9 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │               9 │               0 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 837ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 1.29kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 4ms [min: 2ms, max: 20ms, s.d.: 5ms] │
+└─────────────────────────────────────────────────────────────┘

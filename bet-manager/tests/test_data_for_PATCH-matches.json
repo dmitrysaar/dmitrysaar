@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Изменение матча с пустым body",
+    "body": {},
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение матча с кириллицей в поле match_result",
+    "body": {
+      "match_result": "два:один"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение матча с латиницей в поле match_result",
+    "body": {
+      "match_result": "two:one"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение матча со спец.символами в поле match_result",
+    "body": {
+      "match_result": "2;1"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Изменение матча с пробелом в середине, в поле match_result",
+    "body": {
+      "match_result": "2 : 1"
+    },
+    "expected_status": 400
+  }
+]

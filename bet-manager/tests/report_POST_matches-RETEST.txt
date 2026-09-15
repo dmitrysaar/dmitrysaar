@@ -1,0 +1,209 @@
+newman
+
+b_app
+
+Iteration 1/28
+
+□ Матчи / Негативные сценарии / POST-DDT_matches
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 291B, 21ms]
+  √  Пустое поле match_date
+
+Iteration 2/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 291B, 7ms]
+  √  Пустое поле tournament
+
+Iteration 3/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 286B, 2ms]
+  √  Пустое поле team1
+
+Iteration 4/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 286B, 3ms]
+  √  Пустое поле team2
+
+Iteration 5/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 301B, 2ms]
+  √  Пустое поле match_result
+
+Iteration 6/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 298B, 2ms]
+  √  Добавление матча с датой из 7 символов в поле match_date
+
+Iteration 7/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 301B, 2ms]
+  √  Добавление матча с датой из 11 символов в поле match_date
+
+Iteration 8/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 438B, 2ms]
+  √  Добавление матча с кириллицей в поле match_date
+
+Iteration 9/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 430B, 2ms]
+  √  Добавление матча с латиницей в поле match_date
+
+Iteration 10/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 430B, 2ms]
+  √  Добавление матча со спец. символами в поле match_date
+
+Iteration 11/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 430B, 2ms]
+  √  Добавление матча с пробелом внутри даты 29. 8.2026
+
+Iteration 12/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 430B, 3ms]
+  √  Добавление матча с несуществующей датой 31.02.2026
+
+Iteration 13/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 293B, 2ms]
+  √  Добавление матча с 1 символом в поле tournament
+
+Iteration 14/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 352B, 2ms]
+  √  Добавление матча с 31 символом в поле tournament
+
+Iteration 15/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 323B, 2ms]
+  √  Добавление матча с запрещенными спец.символами в поле tournament
+
+Iteration 16/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [200 OK, 172B, 12ms]
+  1. Добавление матча с пробелом в начале, в поле tournament
+
+Iteration 17/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 288B, 2ms]
+  √  Добавление матча с 1 символом в поле team1
+
+Iteration 18/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 347B, 2ms]
+  √  Добавление матча с 31 символом в поле team1
+
+Iteration 19/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 319B, 2ms]
+  √  Добавление матча с запрещенными спец.символами в поле team1
+
+Iteration 20/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [200 OK, 172B, 8ms]
+  2. Добавление матча с пробелом в начале, в поле team1
+
+Iteration 21/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 288B, 2ms]
+  √  Добавление матча с 1 символом в поле team2
+
+Iteration 22/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 347B, 1ms]
+  √  Добавление матча с 31 символом в поле team2
+
+Iteration 23/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 319B, 2ms]
+  √  Добавление матча с запрещенными спец.символами в поле team2
+
+Iteration 24/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [200 OK, 172B, 7ms]
+  3. Добавление матча с пробелом в начале, в поле team2
+
+Iteration 25/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 316B, 2ms]
+  √  Добавление матча с кириллицей в поле match_result
+
+Iteration 26/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 308B, 2ms]
+  √  Добавление матча с латиницей в поле match_result
+
+Iteration 27/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 304B, 2ms]
+  √  Добавление матча с запрещенными спец.символами в поле match_result (кроме :)
+
+Iteration 28/28
+
+└ Data Driven POST-matches
+  POST http://127.0.0.1:8000/matches [400 Bad Request, 306B, 2ms]
+  √  Добавление матча с пробелом в середине в поле match_result
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │              28 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              28 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              28 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              28 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              28 │               3 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 2.5s                                    │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 5.09kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 3ms [min: 1ms, max: 21ms, s.d.: 4ms] │
+└─────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                             [39m
+[90m    [39m[90m                [39m[90m                                                                                    [39m
+ 1.  AssertionError  Добавление матча с пробелом в начале, в поле tournament                            
+     iteration: 16   expected response to have status code 400 but got 200                              
+                     at assertion:0 in test-script                                                      
+                     inside "Матчи / Негативные сценарии / POST-DDT_matches / Data Driven POST-matches" 
+[90m    [39m[90m                [39m[90m                                                                                    [39m
+ 2.  AssertionError  Добавление матча с пробелом в начале, в поле team1                                 
+     iteration: 20   expected response to have status code 400 but got 200                              
+                     at assertion:0 in test-script                                                      
+                     inside "Матчи / Негативные сценарии / POST-DDT_matches / Data Driven POST-matches" 
+[90m    [39m[90m                [39m[90m                                                                                    [39m
+ 3.  AssertionError  Добавление матча с пробелом в начале, в поле team2                                 
+     iteration: 24   expected response to have status code 400 but got 200                              
+                     at assertion:0 in test-script                                                      
+                     inside "Матчи / Негативные сценарии / POST-DDT_matches / Data Driven POST-matches" 

@@ -1,0 +1,462 @@
+[
+ {
+    "name": "Добавление ставки с пустым полем match_id",
+    "match_id": "",
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пустым полем bet_type",
+    "match_id": 1,
+    "bet_type": "",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пустым полем bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": "",
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пустым полем coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": "",
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пустым полем win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": "",
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пустым полем bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": "",
+    "expected_status": 400
+  },
+    {
+    "name": "Добавление ставки с несуществующим ID в поле match_id",
+    "match_id": 1000,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": "3",
+    "expected_status": 404
+  },
+{
+    "name": "Добавление ставки с отрицательным ID в поле match_id",
+    "match_id": -1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с ID = 0 в поле match_id",
+    "match_id": 0,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с ID = 1.50 в поле match_id",
+    "match_id": 1.5,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с кириллицей в ID в поле match_id",
+    "match_id": "абв",
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с латиницей в ID в поле match_id",
+    "match_id": "abc",
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со спец. символами в ID в поле match_id",
+    "match_id": "@#$",
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пробелом в ID в поле match_id",
+    "match_id": "1 2",
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки c 1 символом в поле bet_type",
+    "match_id": 1,
+    "bet_type": "A",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки c 101 символом в поле bet_type",
+    "match_id": 1,
+    "bet_type": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки c запрещенными спец. символами в поле bet_type",
+    "match_id": 1,
+    "bet_type": "@#$",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с отрицательным значением в поле bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": -100,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с значением = 0 в поле bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 0,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с кириллицей в поле bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": "двести",
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с латиницей в поле bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": "two",
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со спец. символами в поле bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": "@#$",
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пробелом в поле bet_amount",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": "25 0",
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+{
+    "name": "Добавление ставки с отрицательным значением в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": -1.5,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со значением = 0 в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 0,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с целым значением в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со значением = 1.0 в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 1.0,
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с кириллицей в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": "два",
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с латиницей в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": "two",
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со спец. символами в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": "@#$",
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пробелом в поле coefficient",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": "2 2",
+    "win_or_loss": 300,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с граничным значением -1000001 в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": -1000001,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с граничным значением 1000001 в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 1000001,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с граничным значением 1000000.01 в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 1000000.01,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с граничным значением -1000000.01 в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": -1000000.01,
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с кириллицей в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": "триста",
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с латиницей в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": "three",
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со спец. символами в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": "@#$",
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пробелом в поле win_or_loss",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": "30 0",
+    "bettor_id": 3,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с граничным значением -1 в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": -1,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с значением 0 в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 0,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с значением 1.01 в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": 1.01,
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с кириллицей в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": "т",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с латиницей в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": "t",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки со спец. символами в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": "@#$",
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление ставки с пробелом в поле bettor_id",
+    "match_id": 1,
+    "bet_type": "Тест",
+    "bet_amount": 250,
+    "coefficient": 2.25,
+    "win_or_loss": 300,
+    "bettor_id": "3 3",
+    "expected_status": 400
+  }
+]

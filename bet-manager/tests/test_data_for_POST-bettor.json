@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Добавление беттора с пустым полем nickname",
+    "body": {
+      "nickname": ""
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление беттора с 1 символом в поле nickname",
+    "body": {
+      "nickname": "A"
+    },
+    "expected_status": 400
+  },
+  {
+    "name": "Добавление беттора с 51 символом в поле nickname",
+    "body": {
+      "nickname": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "expected_status": 400
+  }
+]

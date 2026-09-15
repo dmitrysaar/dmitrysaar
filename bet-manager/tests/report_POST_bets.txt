@@ -1,0 +1,301 @@
+newman
+
+b_app
+
+Iteration 1/45
+
+□ Ставки / Негативные сценарии / POST-DDT_bets
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 313B, 20ms]
+  √  Добавление ставки с пустым полем match_id
+
+Iteration 2/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 312B, 2ms]
+  √  Добавление ставки с пустым полем bet_type
+
+Iteration 3/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 314B, 2ms]
+  √  Добавление ставки с пустым полем bet_amount
+
+Iteration 4/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 315B, 2ms]
+  √  Добавление ставки с пустым полем coefficient
+
+Iteration 5/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 315B, 3ms]
+  √  Добавление ставки с пустым полем win_or_loss
+
+Iteration 6/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 314B, 2ms]
+  √  Добавление ставки с пустым полем bettor_id
+
+Iteration 7/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 290B, 3ms]
+  √  Добавление ставки с отрицательным ID в поле match_id
+
+Iteration 8/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 289B, 2ms]
+  √  Добавление ставки с ID = 0 в поле match_id
+
+Iteration 9/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 316B, 2ms]
+  √  Добавление ставки с ID = 1.50 в поле match_id
+
+Iteration 10/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 319B, 2ms]
+  √  Добавление ставки с кириллицей в ID в поле match_id
+
+Iteration 11/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 316B, 2ms]
+  √  Добавление ставки с латиницей в ID в поле match_id
+
+Iteration 12/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 316B, 2ms]
+  √  Добавление ставки со спец. символами в ID в поле match_id
+
+Iteration 13/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 316B, 2ms]
+  √  Добавление ставки с пробелом в ID в поле match_id
+
+Iteration 14/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 313B, 2ms]
+  √  Добавление ставки c 1 символом в поле bet_type
+
+Iteration 15/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 415B, 2ms]
+  √  Добавление ставки c 101 символом в поле bet_type
+
+Iteration 16/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 382B, 2ms]
+  √  Добавление ставки c запрещенными спец. символами в поле bet_type
+
+Iteration 17/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 296B, 2ms]
+  √  Добавление ставки с отрицательным значением в поле bet_amount
+
+Iteration 18/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 293B, 2ms]
+  √  Добавление ставки с значением = 0 в поле bet_amount
+
+Iteration 19/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 326B, 2ms]
+  √  Добавление ставки с кириллицей в поле bet_amount
+
+Iteration 20/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 317B, 2ms]
+  √  Добавление ставки с латиницей в поле bet_amount
+
+Iteration 21/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 317B, 2ms]
+  √  Добавление ставки со спец. символами в поле bet_amount
+
+Iteration 22/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 318B, 2ms]
+  √  Добавление ставки с пробелом в поле bet_amount
+
+Iteration 23/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 297B, 2ms]
+  √  Добавление ставки с отрицательным значением в поле coefficient
+
+Iteration 24/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 294B, 3ms]
+  √  Добавление ставки со значением = 0 в поле coefficient
+
+Iteration 25/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [200 OK, 171B, 6ms]
+  1. Добавление ставки с целым значением в поле coefficient
+
+Iteration 26/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 294B, 2ms]
+  √  Добавление ставки со значением = 1.0 в поле coefficient
+
+Iteration 27/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 321B, 2ms]
+  √  Добавление ставки с кириллицей в поле coefficient
+
+Iteration 28/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 318B, 3ms]
+  √  Добавление ставки с латиницей в поле coefficient
+
+Iteration 29/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 318B, 2ms]
+  √  Добавление ставки со спец. символами в поле coefficient
+
+Iteration 30/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 318B, 3ms]
+  √  Добавление ставки с пробелом в поле coefficient
+
+Iteration 31/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 333B, 2ms]
+  √  Добавление ставки с граничным значением -1000001 в поле win_or_loss
+
+Iteration 32/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 324B, 3ms]
+  √  Добавление ставки с граничным значением 1000001 в поле win_or_loss
+
+Iteration 33/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 327B, 2ms]
+  √  Добавление ставки с граничным значением 1000000.01 в поле win_or_loss
+
+Iteration 34/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 336B, 2ms]
+  √  Добавление ставки с граничным значением -1000000.01 в поле win_or_loss
+
+Iteration 35/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 327B, 2ms]
+  √  Добавление ставки с кириллицей в поле win_or_loss
+
+Iteration 36/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 320B, 2ms]
+  √  Добавление ставки с латиницей в поле win_or_loss
+
+Iteration 37/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 318B, 2ms]
+  √  Добавление ставки со спец. символами в поле win_or_loss
+
+Iteration 38/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 319B, 2ms]
+  √  Добавление ставки с пробелом в поле win_or_loss
+
+Iteration 39/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 291B, 3ms]
+  √  Добавление ставки с граничным значением -1 в поле bettor_id
+
+Iteration 40/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 290B, 1ms]
+  √  Добавление ставки с значением 0 в поле bettor_id
+
+Iteration 41/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 318B, 1ms]
+  √  Добавление ставки с значением 1.01 в поле bettor_id
+
+Iteration 42/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 316B, 1ms]
+  √  Добавление ставки с кириллицей в поле bettor_id
+
+Iteration 43/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 315B, 2ms]
+  √  Добавление ставки с латиницей в поле bettor_id
+
+Iteration 44/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 317B, 2ms]
+  √  Добавление ставки со спец. символами в поле bettor_id
+
+Iteration 45/45
+
+└ Data Driven POST-bets
+  POST http://127.0.0.1:8000/bets [400 Bad Request, 317B, 2ms]
+  √  Добавление ставки с пробелом в поле bettor_id
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │              45 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              45 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              45 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              45 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              45 │               1 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 4.1s                                    │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 8.06kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 2ms [min: 1ms, max: 20ms, s.d.: 2ms] │
+└─────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                        [39m
+[90m    [39m[90m                [39m[90m                                                                               [39m
+ 1.  AssertionError  Добавление ставки с целым значением в поле coefficient                        
+     iteration: 25   expected response to have status code 400 but got 200                         
+                     at assertion:0 in test-script                                                 
+                     inside "Ставки / Негативные сценарии / POST-DDT_bets / Data Driven POST-bets" 
