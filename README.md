@@ -9,7 +9,7 @@
 
 
 ## Портфолио
-- **⚽ Bet Manager** — [Основной собственный pet-проект: приложение для расчёта прибыли со ставок](./bet-manager/) (QA, вся логика приложения, тест-документация, CI)
+- [**⚽Bet Manager**](./bet-manager/) — Основной собственный pet-проект : приложение для расчёта прибыли со ставок (QA, вся логика приложения, тест-документация, CI)
 - [**Чек-листы**](https://github.com/dmitrysaar/dmitrysaar/tree/main/checklists) — для интернет-магазина, Яндекс поиска, Aliexpress, калькулятора и мобильного приложения
 - [**Тест-кейсы**](https://github.com/dmitrysaar/dmitrysaar/tree/main/testcases) — примеры тест-кейсов из TestIT
 - [**Баг-репорты**](https://github.com/dmitrysaar/dmitrysaar/tree/main/bug-reports) — отчёты о найденных дефектах
